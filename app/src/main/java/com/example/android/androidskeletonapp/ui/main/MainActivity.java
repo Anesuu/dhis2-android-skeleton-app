@@ -198,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Observable<D2Progress> syncMetadataObservable() {
         // TODO Sync user metadata
+        Sdk.d2().syncMetaData();
         return Observable.never();
     }
 
@@ -214,10 +215,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Observable<D2Progress> downloadDataObservable() {
         return Observable.merge(
                 // TODO Download trackedEntityInstances
-                Observable.never(),
-
+                Sdk.d2().trackedEntityModule().downloadTrackedEntityInstances(100, false, false),
                 // TODO Aggregated data values
-                Observable.never()
+                Sdk.d2().aggregatedModule().data().download()
         );
     }
 
@@ -233,6 +233,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Unit wipeDataCall() {
         // TODO Wipe data
+       // Sdk.d2().wipeModule().wipeData();
         return new Unit();
     }
 
