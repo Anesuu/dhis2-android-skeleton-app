@@ -5,12 +5,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.androidskeletonapp.R;
+import com.example.android.androidskeletonapp.data.Sdk;
+import com.example.android.androidskeletonapp.data.service.StyleBinderHelper;
 import com.example.android.androidskeletonapp.ui.base.DiffByIdItemCallback;
 import com.example.android.androidskeletonapp.ui.base.ListItemWithStyleHolder;
 
 import org.hisp.dhis.android.core.program.Program;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.paging.PagedList;
 import androidx.paging.PagedListAdapter;
 
 public class ProgramsAdapter extends PagedListAdapter<Program, ListItemWithStyleHolder> {
@@ -33,6 +37,11 @@ public class ProgramsAdapter extends PagedListAdapter<Program, ListItemWithStyle
     @Override
     public void onBindViewHolder(@NonNull ListItemWithStyleHolder holder, int position) {
         // TODO Bind view holder
+        Program program = getItem(position);
+        holder.title.setText(program.displayName());
+        holder.subtitle1.setText(program.programStages().size() + "Program stages");
         // TODO Set on click listener
+
+        StyleBinderHelper.bindStyle(holder, program.style());
     }
 }

@@ -1,5 +1,6 @@
 package com.example.android.androidskeletonapp.ui.main;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -224,6 +225,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         /*TODO Add program navigation*/
+        if (id == R.id.navPrograms) {
+            // Start activity
+            ActivityStarter.startActivity(this, ProgramsActivity.class, false);
+        }
 
         if (id == R.id.navWipeData) {
             syncStatusText.setText(R.string.wiping_data);
