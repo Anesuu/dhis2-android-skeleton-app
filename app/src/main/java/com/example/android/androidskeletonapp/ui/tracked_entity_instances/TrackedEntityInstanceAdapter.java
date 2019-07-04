@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import com.example.android.androidskeletonapp.R;
 import com.example.android.androidskeletonapp.data.service.DateFormatHelper;
+import com.example.android.androidskeletonapp.data.service.StyleBinderHelper;
 import com.example.android.androidskeletonapp.ui.base.DiffByIdItemCallback;
 import com.example.android.androidskeletonapp.ui.base.ListItemWithSyncHolder;
 
@@ -50,7 +51,9 @@ public class TrackedEntityInstanceAdapter extends PagedListAdapter<TrackedEntity
         setBackgroundColor(R.color.colorAccentDark, holder.icon);
 
         // TODO show the correct syncIcon for each tracked entity instance state
+
         // TODO - setState(trackedEntityInstance.state(), holder.syncIcon);
+        StyleBinderHelper.setState(trackedEntityInstance.state(), holder.syncIcon);
     }
 
     private String valueAt(List<TrackedEntityAttributeValue> values, String attributeUid) {
